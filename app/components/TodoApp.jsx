@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TodoList from 'TodoList';
 import AddToDo from 'AddToDo';
 import TodoSearch from 'TodoSearch';
+import uuid from 'node-uuid';
 
 export default class TodoApp extends Component{
     constructor(props){
@@ -12,26 +13,35 @@ export default class TodoApp extends Component{
             fromCheck:false,
             todos:[
                 {
-                    id:1,
+                    id:uuid(),
                     text:'Finish Todo Application',
                 },
                 {
-                    id:2,
+                    id:uuid(),
                     text:'Finish Redux Tutorial'
                 },
                  {
-                    id:3,
+                    id:uuid(),
                     text:'Watch Logan',
                 },
                 {
-                    id:4,
+                    id:uuid(),
                     text:'Start javascript OOP tutorial'
                 }
             ]
         }
     }
     handleToDo = (text) =>{
-        alert(`new text ${text}`);
+        this.setState({
+           todos:[
+               ...this.state.todos,
+               {
+                   id:uuid(),    
+                   text:text,    
+               }
+               
+           ] 
+        });
     }
     filter = (fromCheck,fromInput) =>{
         this.setState({

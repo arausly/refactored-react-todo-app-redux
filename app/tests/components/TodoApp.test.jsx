@@ -10,4 +10,10 @@ describe('TodoApp',()=>{
     it('Should exist',()=>{
         expect(TodoApp).toExist(); 
     });
+    it('should update todo list',()=>{
+        let todocomp = TestUtils.renderIntoDocument(<TodoApp/>);
+        todocomp.handleToDo('Greet aunty Ebe');
+         todocomp.setState({todos:[]});
+         expect(todocomp.state.todos.length).toBe(1);
+    });
 })
