@@ -11,9 +11,10 @@ describe('TodoApp',()=>{
         expect(TodoApp).toExist(); 
     });
     it('should update todo list',()=>{
+        let text ='Greet aunty Ebe';
         let todocomp = TestUtils.renderIntoDocument(<TodoApp/>);
-        todocomp.handleToDo('Greet aunty Ebe');
-         todocomp.setState({todos:[]});
-         expect(todocomp.state.todos.length).toBe(1);
+          todocomp.setState({todos:[]});
+               todocomp. handleToDo(text);
+         expect(todocomp.state.todos[0].text).toBe(text);
     });
 })
