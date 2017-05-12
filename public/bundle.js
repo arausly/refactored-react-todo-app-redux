@@ -10265,7 +10265,7 @@ var TodoApp = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (TodoApp.__proto__ || Object.getPrototypeOf(TodoApp)).call(this, props));
 
-        _this.handleToDo = function (stext) {
+        _this.handleToDo = function (text) {
             alert('new text ' + text);
         };
 

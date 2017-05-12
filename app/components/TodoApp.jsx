@@ -30,7 +30,7 @@ export default class TodoApp extends Component{
             ]
         }
     }
-    handleToDo = (stext) =>{
+    handleToDo = (text) =>{
         alert(`new text ${text}`);
     }
     filter = (fromCheck,fromInput) =>{
