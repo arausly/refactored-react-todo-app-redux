@@ -21323,11 +21323,7 @@ module.exports = {
             todos = [];
         }
 
-        if (todos instanceof Array) {
-            return todos;
-        } else {
-            return [];
-        }
+        return todos instanceof Array ? todos : [];
     }
 };
 
