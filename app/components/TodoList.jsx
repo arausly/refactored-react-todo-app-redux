@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import Todo from 'Todo';
+import PropTypes from 'prop-types';
 
 export default class TodoList extends Component{
     render(){
@@ -8,7 +9,7 @@ export default class TodoList extends Component{
         const renderTodo = () =>{
             return todos.map((todo)=>{
                return( 
-                   <Todo key={todo.id} {...todo}/>
+                   <Todo key={todo.id} {...todo} onToggle ={this.props.onToggle}/>
                ); 
             });
         }
@@ -18,4 +19,8 @@ export default class TodoList extends Component{
               </div>
         );
     }
+}
+    
+TodoList.propTypes ={
+    onToggle:PropTypes.func.isRequired
 }

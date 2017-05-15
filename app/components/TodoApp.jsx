@@ -1,9 +1,13 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
+import uuid from 'node-uuid';
+
+
 import TodoList from 'TodoList';
 import AddToDo from 'AddToDo';
 import TodoSearch from 'TodoSearch';
-import uuid from 'node-uuid';
+import TodoAPI from 'TodoAPI';
+
 
 export default class TodoApp extends Component{
     constructor(props){
@@ -11,25 +15,11 @@ export default class TodoApp extends Component{
         this.state ={
             fromInput:'',
             fromCheck:false,
-            todos:[
-                {
-                    id:uuid(),
-                    text:'Finish Todo Application',
-                },
-                {
-                    id:uuid(),
-                    text:'Finish Redux Tutorial'
-                },
-                 {
-                    id:uuid(),
-                    text:'Watch Logan',
-                },
-                {
-                    id:uuid(),
-                    text:'Start javascript OOP tutorial'
-                }
-            ]
+            todos:TodoAPI.getTodos()
         }
+    }
+    componentDidUpdate(){
+        TodoAPI.setTodos(this.state.todos);
     }
     handleToDo = (text) =>{
         this.setState({
@@ -37,7 +27,8 @@ export default class TodoApp extends Component{
                ...this.state.todos,
                {
                    id:uuid(),    
-                   text:text,    
+                   text:text,  
+                   completed:false
                }
                
            ] 
@@ -49,12 +40,21 @@ export default class TodoApp extends Component{
             fromCheck:fromCheck
         });
     }
+    handleToggle = (id) =>{
+      var newTodos =this.state.todos.map((todo)=>{
+         if(todo.id === id){
+             todo.completed = !todo.completed;
+         } 
+          return todo;
+      });
+        this.setState({todos:newTodos});
+    }
     render(){
         let {todos} = this.state;
         return(
             <div>
                 <TodoSearch onSearch={this.filter}/>
-                <TodoList todos={todos}/>
+                <TodoList todos={todos} onToggle ={this.handleToggle}/>
                 <AddToDo passToDo = {this.handleToDo}/>
             </div>    
         );

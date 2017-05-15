@@ -17,4 +17,18 @@ describe('TodoApp',()=>{
                todocomp. handleToDo(text);
          expect(todocomp.state.todos[0].text).toBe(text);
     });
-})
+    it('should properly update the state when called',()=>{
+        let todoComponent = TestUtils.renderIntoDocument(<TodoApp/>);
+        let todos = [
+            {
+                id:1,
+                text:"Read Romans 6",
+                completed:true,
+            }
+        ]
+        todoComponent.setState({todos:todos});
+         expect(todoComponent.state.todos[0].completed).toBe(true);
+        todoComponent.handleToggle(todos[0].id);
+        expect(todoComponent.state.todos[0].completed).toBe(false);
+    });
+});
