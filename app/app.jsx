@@ -6,7 +6,7 @@ import TodoApp from 'TodoApp';
 require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
 $(document).foundation();
 
-//require('style-loader!css-loader!sass-loader!App');
+require('style-loader!css-loader!sass-loader!App');
 
 ReactDOM.render(
 <TodoApp/>, 

@@ -10,7 +10,7 @@ export default class TodoSearch extends Component{
     }
     render(){
         return(
-             <div>
+             <div className ="box__header">
                 <div>
                    <input type ="text" placeholder ="Search your todos" ref = "searchTxt" onChange={this.listenForChange}/>
                 </div>

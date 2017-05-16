@@ -1,0 +1,31 @@
+.box{
+ background:$light-grey;
+ border:1px solid  $light-grey-border;
+ border-radius:5px;
+ margin-bottom:2rem;
+}
+
+.box__header{
+ border-bottom:1px solid $light-grey-border;
+ padding:1.5rem;
+ 
+    label{
+        cursor:pointer;
+        font-size:1rem;
+    }
+    
+}
+
+.box__message{
+    padding:0.5rem;
+    color:$light-color;
+    text-align:center;
+    margin:2rem auto;
+     
+}
+
+.box__footer{
+    padding:1.5rem 1.5rem 0rem 1.5rem;
+    border-top:1px solid $light-grey-border;
+    
+}

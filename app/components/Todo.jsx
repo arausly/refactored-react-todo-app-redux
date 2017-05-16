@@ -1,17 +1,35 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 export default class Todo extends Component{
     render(){
-        let {id,text,completed} = this.props;
+        let {id,text,completed,createdAt,completedAt} = this.props; 
+         let todoClassName = completed ? 'todo todo-completed' : 'todo';
+        const renderDate = () =>{       
+             if(completed === true){
+                   let message = "Completed";
+                   let timestamp = completedAt;
+                  return  message + moment.unix(timestamp).format(' MMM Do, YYYY @ hh:mm a');
+               }else{
+                  let message = 'Created';
+                  let timestamp = createdAt;
+                  return  message + moment.unix(timestamp).format(' MMM Do, YYYY @ hh:mm a');
+               }
+        }
         return(
-               <div onClick ={()=>{
+               <div className ={todoClassName} onClick ={()=>{
                     this.props.onToggle(id);
                 }}> 
-                <input type = "checkbox" checked ={completed}/>
-                {text}
-              </div>
+                  <div>      
+                    <input type = "checkbox" checked={completed}/>
+                  </div> 
+                  <div>    
+                    <p>{text}</p>
+                    <p className="todo_subtext">{renderDate()}</p>
+                  </div>     
+              </div> 
         );
     }
 }

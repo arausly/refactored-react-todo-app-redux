@@ -48,5 +48,43 @@ describe('TodoAPI',()=>{
             let actualTodos = TodoAPI.getTodos();
             expect(actualTodos).toEqual([]);  
        });
-   });    
+    });
+    
+       describe("filterTodos",()=>{ 
+       let todos = [{
+              id:1,
+              text:'finish 21 videos',
+              completed:true
+            },
+             {
+                id:3,
+                text:'finish todo application',
+                completed:false
+             }];
+           
+        it('should render all completed todos when true',()=>{
+               let filteredTodos = TodoAPI.filterTodos(todos,true,'');
+              expect(filteredTodos.length).toBe(2);
+       });
+           
+     it('should render only  uncompleted todos when true',()=>{
+             let filteredTodos = TodoAPI.filterTodos(todos,false,'');
+             expect(filteredTodos.length).toBe(1);
+       });
+           
+     it('should sort by completed status',()=>{
+           let filteredTodos =  TodoAPI.filterTodos(todos,true,'');
+            let completed = filteredTodos[0].completed;
+            expect(completed).toBe(false);
+         });
+           
+     it('should render all todos for empty search text',()=>{
+           let filteredTodos = TodoAPI.filterTodos(todos,true,'');
+             expect(filteredTodos.length).toBe(2);
+         });
+      it('should one of the todos for string search text',()=>{
+           let filteredTodos = TodoAPI.filterTodos(todos,true,'finish todo');
+             expect(filteredTodos.length).toBe(1);
+         });       
+       });
 });
