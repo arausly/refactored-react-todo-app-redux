@@ -38,7 +38,7 @@ let addtodoReducer = (state =[],action) =>{
                }
         ];  
         case "TOGGLE_TODO_ID":
-          let newTodos = state.map((todo)=>{
+          return state.map((todo)=>{
              if(todo.id === action.id){
                  let changeCompleted = !todo.completed;
                 
@@ -47,9 +47,11 @@ let addtodoReducer = (state =[],action) =>{
                       completed:changeCompleted,
                       completedAt:changeCompleted ? moment().unix()  : undefined
                  };
-             }
-          });
-         return newTodos;    
+                 
+             }else{
+				 return todo;
+			 }
+          });    
        break;
        default:
         return state;

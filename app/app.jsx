@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import TodoApp from 'TodoApp';
 import redux from 'redux';
+import {Provider} from 'react-redux';
 
 //var actions = require('actions');
 import {
@@ -19,10 +20,6 @@ store.subscribe(()=>{
    console.log('New State',store.getState());
 });
 
-store.dispatch(addtodo('finish redux'));
-store.dispatch(setSearchText('redux'));
-store.dispatch(toggleShowCompleted());
-
 
 
 
@@ -32,5 +29,7 @@ $(document).foundation();
 require('style-loader!css-loader!sass-loader!App');
 
 ReactDOM.render(
-<TodoApp/>, 
+    <Provider store={store}>    
+       <TodoApp/>
+    </Provider>, 
 document.getElementById('main'));

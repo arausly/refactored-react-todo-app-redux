@@ -1,14 +1,17 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+var actions = require("actions");
 
-export default class AddToDo extends Component{
+export class AddToDo extends Component{
     addToDo = (e) =>{
         e.preventDefault();
+        let {dispatch} = this.props;
         let newToDo = this.refs.todo.value;
         if(newToDo.match(/\d?[a-zA-z]/)){
             this.refs.todo.value = '';
-            this.props.passToDo(newToDo);
+             dispatch(actions.addtodo(newToDo));
         }else{
             this.refs.todo.focus();
         }
@@ -29,6 +32,4 @@ export default class AddToDo extends Component{
 }
 
 
-AddToDo.propTypes ={
-    passToDo:PropTypes.func.isRequired
-}
+export default connect()(AddToDo);

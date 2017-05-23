@@ -48,7 +48,7 @@ describe('Reducers',()=>{
                    completedAt:125,
                }]; 
         
-         let action ={
+         let action={
           type:"TOGGLE_TODO_ID",
           id:1
         }
