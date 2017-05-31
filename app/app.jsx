@@ -1,26 +1,22 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import TodoApp from 'TodoApp';
 import redux from 'redux';
 import {Provider} from 'react-redux';
 
-//var actions = require('actions');
-import {
-         setSearchText,
-         addtodo,
-         toggleShowCompleted,
-         toggleTodo
-       }
-from 'actions';
+import TodoApp from 'TodoApp';
+import TodoAPI from 'TodoAPI'; 
+var actions  = require('actions');
 
 var store = require('configureStore').configure();
 
-
-store.subscribe(()=>{
-   console.log('New State',store.getState());
+store.subscribe(() =>{
+	var state = store.getState();
+	
+    TodoAPI.setTodos(state.addtodoReducer);	
 });
 
-
+var initialTodos = TodoAPI.getTodos();
+store.dispatch(actions.addTodos(initialTodos));
 
 
 require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');

@@ -8,7 +8,7 @@ module.exports ={
         }
     },
     getTodos:function(){
-        let stringTodos =  localStorage.getItem('todos');
+        let stringTodos =localStorage.getItem('todos');
         let todos;
         
         try{

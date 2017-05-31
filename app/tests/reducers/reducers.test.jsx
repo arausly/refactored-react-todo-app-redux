@@ -26,7 +26,7 @@ describe('Reducers',()=>{
          expect(res).toBe(true);
      }); 
   });
- describe('Add todos',()=>{
+ describe('Add todo',()=>{
     it('should add todos properly',()=>{
         let action ={
           type:"ADD_TODO",
@@ -38,6 +38,25 @@ describe('Reducers',()=>{
         expect(res[0].text).toEqual(action.newTodo);
     }); 
     
+	 it('should add todos array',()=>{
+		
+		  let todos =[{
+			       id:1,    
+                   text:"finish redux",  
+                   completed:true,
+                   createdAt:9,
+                   completedAt:125,
+			  
+		  }];
+		 let action = {
+			 type:"ADD_TODOS",
+			 todos,
+		 } 
+		 
+		 let res = reducers.addtodoReducer(df([]),df(action));
+		 expect(res.length).toEqual(todos.length);
+		 expect(res[0]).toEqual(todos[0]);
+	 });
     it("should toogle todos with matching ids",()=>{
        let todos =
              [{

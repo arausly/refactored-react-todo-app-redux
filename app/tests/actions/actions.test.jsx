@@ -41,5 +41,23 @@ describe('ACTIONS',()=>{
         let res = actions.toggleTodo(action.id);
         expect(res).toEqual(action);
     })
-    
+	  
+	 it("should addd todos array properly",()=>{
+		let todos =[{
+			id:112,
+			text:"pray to God",
+			createdAt:1223333,
+			completed:false,
+			completedAt:undefined,
+		}];
+		 
+		 let action = {
+		    type:"ADD_TODOS",
+			todos
+		 }
+		 
+		 let res = actions.addTodos(todos);
+		 expect(res).toEqual(action);
+	 });
+     
 })

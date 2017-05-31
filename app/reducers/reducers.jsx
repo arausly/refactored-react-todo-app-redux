@@ -16,7 +16,7 @@ let searchText = (state = '',action) =>{
 let showCompleted = (state = false,action) =>{
     switch(action.type){
         case "TOGGLE_SHOW_COMPLETED":
-         return state === false ? true :false;
+         return !state;
         break;
         default:
          return state;
@@ -45,13 +45,18 @@ let addtodoReducer = (state =[],action) =>{
                  return {
                      ...todo,
                       completed:changeCompleted,
-                      completedAt:changeCompleted ? moment().unix()  : undefined
+                      completedAt:changeCompleted ? moment().unix() : undefined
                  };
                  
              }else{
 				 return todo;
 			 }
-          });    
+          });   
+		case "ADD_TODOS":  
+		 return [
+			...state,
+			...action.todos
+		 ];
        break;
        default:
         return state;

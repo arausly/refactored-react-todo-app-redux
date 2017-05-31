@@ -16,9 +16,9 @@ export default class TodoApp extends Component{
                  <div className="row">
                      <div className=" column medium-6 large-5 small-centered small-12">
                          <div className ="box">
-                            <TodoSearch onSearch={this.filter}/>
+                            <TodoSearch/>
                             <TodoList/>
-                            <AddToDo passToDo = {this.handleToDo}/>
+                            <AddToDo/>
                          </div>     
                      </div>       
                  </div>     
