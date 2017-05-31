@@ -1,2 +1,2 @@
 # React-Todo-App
-  Built with Reactjs,obviously :)... 
+  Built with Reactjs and Redux.
