@@ -1,4 +1,5 @@
-var redux = require('redux');
+import * as redux from 'redux';
+import thunk from 'redux-thunk';
 
 import {
          searchText,
@@ -16,6 +17,7 @@ export  let configure = (initialState ={}) =>{
     }) 
 
     let store = redux.createStore(reducer,initialState,redux.compose(
+	 redux.applyMiddleware(thunk),
      window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
     

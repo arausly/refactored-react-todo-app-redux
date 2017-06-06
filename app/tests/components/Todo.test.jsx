@@ -5,6 +5,7 @@ import TestUtils from 'react-addons-test-utils';
 import $ from 'jQuery';
 
 import {Todo} from 'Todo';
+import * as actions from 'actions';
 
 describe('Todo',()=>{
     it('Should exist',()=>{
@@ -17,14 +18,14 @@ describe('Todo',()=>{
             text:'wash clothes',
             completed:true,
         };
+		
+		let action = actions.startToggleTodo(todoData.id,!todoData.completed);
         
         let spy = expect.createSpy();
         let Comp = TestUtils.renderIntoDocument(<Todo {...todoData} dispatch={spy}/>);
         let $el = $(ReactDOM.findDOMNode(Comp));
         TestUtils.Simulate.click($el[0]);
-        expect(spy).toHaveBeenCalledWith({
-            type:"TOGGLE_TODO_ID",
-            id:todoData.id
-        });
+		
+        expect(spy).toHaveBeenCalledWith(action);
     });
 });

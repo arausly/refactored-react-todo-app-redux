@@ -5,6 +5,7 @@ import expect from 'expect';
 import $ from 'jQuery';
 
 import {AddToDo} from 'AddToDo';
+import * as actions from 'actions';
 
 describe('AddToDo',()=>{
    it('should exist',()=>{
@@ -14,10 +15,7 @@ describe('AddToDo',()=>{
    it('should dispatch add todo action for valid todo text',()=>{
        let spy = expect.createSpy();
        
-       let action ={
-        type:"ADD_TODO",
-        newTodo:"yeah man"
-       };
+	   let action = actions.startAddTodo('some random text');
        
        let addtodoComp = TestUtils.renderIntoDocument(<AddToDo dispatch={spy}/>);
        addtodoComp.refs.todo.value="yeah man"
@@ -32,7 +30,7 @@ describe('AddToDo',()=>{
        addtodoComponent.refs.todo.value="";
        let $addNode = $(ReactDOM.findDOMNode(addtodoComponent));
        let actual = TestUtils.Simulate.submit($addNode.find('form')[0]);
-       expect(spy).toNotHaveBeenCalled();
-       
+       expect(spy).toNotHaveBeenCalled(); 
    });  
+   
 });

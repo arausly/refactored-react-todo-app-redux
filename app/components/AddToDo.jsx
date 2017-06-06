@@ -11,7 +11,7 @@ export class AddToDo extends Component{
         let newToDo = this.refs.todo.value;
         if(newToDo.match(/\d?[a-zA-z]/)){
             this.refs.todo.value = '';
-             dispatch(actions.addtodo(newToDo));
+             dispatch(actions.startAddTodo(newToDo));
         }else{
             this.refs.todo.focus();
         }

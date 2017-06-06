@@ -22,8 +22,9 @@ module.exports = {
         filename:'./public/bundle.js'
     },
     resolve:{
-        modules:[__dirname,'node_modules','./app/components','app/api'],
+        modules:[__dirname,'node_modules','./app/components','app/api','app/firebase'],
         alias:{
+			app:'app',
             App:'app/styles/app.scss',
             actions:'app/actions/actions.jsx',
             reducers:'app/reducers/reducers.jsx',
@@ -39,7 +40,7 @@ module.exports = {
                   presets: ['react','es2015','stage-0']
               },
               test:/\.jsx?$/,
-              exclude:/(node_modules | bower_component)/
+              exclude:/node_modules/
                  
              } 
        ]

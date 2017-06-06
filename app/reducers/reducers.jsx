@@ -29,23 +29,14 @@ let addtodoReducer = (state =[],action) =>{
       case "ADD_TODO":
         return [
             ...state,
-               {
-                   id:uuid(),    
-                   text:action.newTodo,  
-                   completed:false,
-                   createdAt:moment().unix(),
-                   completedAt:undefined,
-               }
+            action.todo,
         ];  
-        case "TOGGLE_TODO_ID":
+        case "UPDATE_TODO":
           return state.map((todo)=>{
-             if(todo.id === action.id){
-                 let changeCompleted = !todo.completed;
-                
+             if(todo.id === action.id){ 
                  return {
                      ...todo,
-                      completed:changeCompleted,
-                      completedAt:changeCompleted ? moment().unix() : undefined
+                     ...action.updates 
                  };
                  
              }else{

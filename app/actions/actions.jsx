@@ -1,3 +1,7 @@
+import firebase,{firebaseRef} from 'index';
+import moment from 'moment';
+
+
 let setSearchText = (searchText) =>{
     return{
         type:"SET_SEARCH_TEXT",
@@ -5,11 +9,32 @@ let setSearchText = (searchText) =>{
     }
 }
 
-let addtodo = (newTodo) =>{
+let addtodo = (todo) =>{
     return{
         type:"ADD_TODO",
-        newTodo
+        todo
     }
+}
+
+let startAddTodo = (text) =>{
+	 return (dispatch,getState)=>{
+		 var todo = {    
+                   text, 
+                   completed:false,
+                   createdAt:moment().unix(),
+                   completedAt:null,
+               }
+		 
+	
+	let todoRef =  firebaseRef.child('todo').push(todo);
+		
+		return todoRef.then(()=>{
+			 dispatch(addtodo({
+				 ...todo,
+				 id:todoRef.key,
+			 })); 
+		 });
+	 }
 }
 
 let addTodos = (todos) =>{
@@ -25,12 +50,31 @@ let toggleShowCompleted = () =>{
      }
 }
 
-let toggleTodo = (id) =>{
+
+let updateToggle= (id,updates) =>{
     return{
-        type:"TOGGLE_TODO_ID",
-        id
+        type:"UPDATE_TODO",
+        id,
+		updates
     }
 }
+
+let startToggleTodo = (id,completed) =>{
+	 return (dispatch,getState) =>{
+		 let todoRef = firebaseRef.child(`todo/${id}`)
+		 let updates = {
+			 completed,
+			 completedAt:completed ? moment().unix() : null
+		 };
+		 
+		  todoRef.update(updates).then(()=>{
+		  dispatch(updateToggle(id,updates))
+	 });
+}
+
+}
+
+
 
 
 export {
@@ -38,5 +82,7 @@ export {
          addtodo,
 		 addTodos,
          toggleShowCompleted,
-         toggleTodo
+         updateToggle,
+		 startAddTodo,
+		 startToggleTodo,
         }
