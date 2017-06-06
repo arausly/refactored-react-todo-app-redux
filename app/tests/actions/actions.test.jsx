@@ -131,7 +131,7 @@ describe('ACTIONS',()=>{
 				 });
 				
 				expect(getMockAction[0].updates.completedAt).toExist();
-				 
+				 done();
 			},done);
 		});
 	});
